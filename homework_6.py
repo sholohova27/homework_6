@@ -1,17 +1,21 @@
-from pathlib import Path
 import os
 import shutil
 import sys
+from pathlib import Path
 from normalize import normalize
 from delete import delete
 
 
-def main():
+def cmd():
     path_ = ''
     try:
-        path_ = sys.argv[1] #запускает сортировку в папке, в которой находится скрипт
+        path_ = sys.argv[1]  # путь к папке, в которой находится скрипт
     except IndexError:
         print("No parameter")
+    return path_
+
+
+def main(path_):
     p = Path(path_)
     images = []
     video = []
