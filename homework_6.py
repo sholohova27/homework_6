@@ -6,17 +6,24 @@ from normalize import normalize
 from delete import delete
 
 
-def cmd():
-    path_ = ''
+def get_path():
+    path = None
     try:
-        path_ = sys.argv[1]  # путь к папке, в которой находится скрипт
+        path = Path(sys.argv[1])# путь к папке, в которой находится скрипт
     except IndexError:
-        print("No parameter")
-    return path_
+        print("Type path to folder")
+    return path
+
+    if path and path.exists():
+        return path
+    else:
+        print("Path not exists")
+
+    return path
 
 
 def main(path_):
-    p = Path(path_)
+    p = path_
     images = []
     video = []
     docs = []
@@ -153,9 +160,12 @@ def main(path_):
         for key, value in categories.items():
             print(key, value)
 
+
 if __name__ == "__main__":
-    main()
+    _path_ = get_path()
+    if _path_:
+        main(_path_)
 
 
-
+# main(cmd())
 # r'C:/Users/Ioan/Downloads'
